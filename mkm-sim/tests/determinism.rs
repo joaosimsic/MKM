@@ -58,9 +58,7 @@ fn different_seeds_differ() {
     let r1 = run_sim(1, 5);
     let r2 = run_sim(2, 5);
     // At minimum the initial state should differ (different seeds → different positions/states)
-    let differs = r1
-        .iter()
-        .any(|(id, v1)| r2.get(id) != Some(v1));
+    let differs = r1.iter().any(|(id, v1)| r2.get(id) != Some(v1));
     assert!(differs, "different seeds should produce different states");
 }
 
