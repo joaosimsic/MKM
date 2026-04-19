@@ -34,7 +34,14 @@ impl Edge {
         }
     }
 
+    /// g = 1 / (1 + r)  per docs §2
     pub fn conductance(&self) -> f32 {
-        1.0 - self.resistance.clamp(0.0, 1.0)
+        1.0 / (1.0 + self.resistance)
+    }
+
+    /// Hysteresis update: r_{t+1} = α·r_t + (1-α)·mean(|history|)
+    pub fn update_resistance(&mut self, alpha: f32) {
+        let hist_mean = self.history.mean();
+        self.resistance = (alpha * self.resistance + (1.0 - alpha) * hist_mean).clamp(0.0, 1.0);
     }
 }

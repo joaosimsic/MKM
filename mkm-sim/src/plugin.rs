@@ -10,7 +10,10 @@ use crate::{
         EdgeStore, EventQueueRes, ParamsRes, SimClock, SimConfigRes, SimRngRes, TickMetrics,
     },
     rng::SimRng,
-    systems::{ingest::ingest_system, output::output_system},
+    systems::{
+        history::history_system, ingest::ingest_system, output::output_system,
+        propagate::propagate_system,
+    },
     tick::TickStage,
 };
 
@@ -53,8 +56,9 @@ impl Plugin for MkmSimPlugin {
                 .chain(),
         );
 
-        // Register Phase-1 systems; later phases fill in the remaining stages
         app.add_systems(Update, ingest_system.in_set(TickStage::Ingest));
+        app.add_systems(Update, propagate_system.in_set(TickStage::Propagate));
+        app.add_systems(Update, history_system.in_set(TickStage::History));
         app.add_systems(Update, output_system.in_set(TickStage::Output));
     }
 }

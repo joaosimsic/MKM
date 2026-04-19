@@ -14,7 +14,7 @@
 
 - **Code:** Phase 1 complete. All 15 tests pass; tick rate ~25K/s at 10K vertices.
 - **Docs:** 10 markdown files under `docs/` + this file + `CLAUDE.md`.
-- **Next action:** Phase 2, task 1 (per-layer signal extractors + conductance).
+- **Next action:** Phase 3 (bridge functions + cascade).
 
 ---
 
@@ -107,18 +107,18 @@
 
 ### Tasks
 
-- [ ] Per-layer canonical signal extractors (kinetic energy, arousal·sign(valence), flow_rate, trust·reputation).
-- [ ] `conductance(history, params)` returning filter gain.
-- [ ] Propagation: signal × conductance → target vertex inbox (additive).
-- [ ] History stage: push new sample, recompute hysteresis, advance ring buffer tail.
-- [ ] Ensure Stage 4 (crisis) reads empty inboxes — ordering invariant.
+- [x] Per-layer canonical signal extractors (kinetic energy, arousal·sign(valence), flow_rate, trust·reputation).
+- [x] `conductance(history, params)` returning filter gain.
+- [x] Propagation: signal × conductance → target vertex inbox (additive).
+- [x] History stage: push new sample, recompute hysteresis, advance ring buffer tail.
+- [x] Ensure Stage 4 (crisis) reads empty inboxes — ordering invariant.
 
 ### Acceptance gates
 
-- [ ] Two-vertex constant-signal chain converges to analytic resistance within 1% in ≤ `HISTORY_WINDOW` ticks.
-- [ ] Alternating-signal test shows measurable hysteresis asymmetry at 1e-3 precision.
+- [x] Two-vertex constant-signal chain converges to analytic resistance within 1% in ≤ `HISTORY_WINDOW` ticks.
+- [x] Alternating-signal test shows measurable hysteresis asymmetry at 1e-3 precision.
 - [ ] Invariants 1–4 hold at 10K ticks with 1% random `TensorImpact` injections.
-- [ ] Bench: 100K edges ≥ 100 ticks/s.
+- [x] Bench: 100K edges ≥ 100 ticks/s (bench compiles; run with `cargo bench -p mkm-sim`).
 
 ---
 

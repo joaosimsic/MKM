@@ -16,3 +16,10 @@ glam = { workspace = true }
 rand = { workspace = true }
 rand_chacha = { workspace = true }
 smallvec = { workspace = true }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "edges_100k"
+harness = false
