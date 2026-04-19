@@ -1,5 +1,8 @@
+pub mod components;
 pub mod init;
 pub mod metrics;
+pub mod plugin;
+pub mod resources;
 pub mod rng;
 pub mod scenarios;
 pub mod systems;

@@ -1,14 +1,14 @@
 use crate::{
     id::{EdgeId, VertexId},
     layer::Layer,
-    lifecycle::LifecycleState,
+    lifecycle::EdgeLifecycle,
     ringbuffer::RingBuffer,
 };
 use serde::{Deserialize, Serialize};
 
 pub const HISTORY_WINDOW: usize = 64;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Edge {
     pub id: EdgeId,
     pub source: VertexId,
@@ -16,7 +16,7 @@ pub struct Edge {
     pub layer: Layer,
     pub weight: f32,
     pub resistance: f32,
-    pub lifecycle: LifecycleState,
+    pub lifecycle: EdgeLifecycle,
     pub history: RingBuffer<f32>,
 }
 
@@ -28,8 +28,8 @@ impl Edge {
             target,
             layer,
             weight: 1.0,
-            resistance: 0.0,
-            lifecycle: LifecycleState::Active,
+            resistance: 0.1,
+            lifecycle: EdgeLifecycle::Active,
             history: RingBuffer::new(HISTORY_WINDOW),
         }
     }

@@ -6,7 +6,7 @@ pub enum CouplingMode {
     Tight,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct CouplingState {
     pub mode: CouplingMode,
     pub level: f32,

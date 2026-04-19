@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct RingBuffer<T> {
     buf: Vec<T>,
     capacity: usize,
@@ -9,9 +9,11 @@ pub struct RingBuffer<T> {
 }
 
 impl<T: Clone + Default> RingBuffer<T> {
+    /// Create a ring buffer with a fixed capacity. The backing Vec is lazily
+    /// allocated: an empty buffer uses no heap memory.
     pub fn new(capacity: usize) -> Self {
         Self {
-            buf: vec![T::default(); capacity],
+            buf: Vec::new(),
             capacity,
             head: 0,
             len: 0,
@@ -19,6 +21,9 @@ impl<T: Clone + Default> RingBuffer<T> {
     }
 
     pub fn push(&mut self, val: T) {
+        if self.buf.is_empty() {
+            self.buf = vec![T::default(); self.capacity];
+        }
         self.buf[self.head] = val;
         self.head = (self.head + 1) % self.capacity;
         if self.len < self.capacity {
@@ -43,5 +48,18 @@ impl<T: Clone + Default> RingBuffer<T> {
         let len = self.len;
         let cap = self.capacity;
         (0..len).map(move |i| &self.buf[(start + i) % cap])
+    }
+}
+
+impl RingBuffer<f32> {
+    pub fn mean(&self) -> f32 {
+        if self.len == 0 {
+            return 0.0;
+        }
+        self.iter().sum::<f32>() / self.len as f32
+    }
+
+    pub fn sum_abs(&self) -> f32 {
+        self.iter().map(|x| x.abs()).sum()
     }
 }

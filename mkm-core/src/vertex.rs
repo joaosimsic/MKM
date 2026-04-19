@@ -1,7 +1,7 @@
 use crate::{id::VertexId, state::VertexState};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Vertex {
     pub id: VertexId,
     pub state: VertexState,

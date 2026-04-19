@@ -12,9 +12,9 @@
 
 ## Status snapshot (as of 2026-04-19)
 
-- **Code:** Phase 0 complete. Workspace builds and tests pass.
+- **Code:** Phase 1 complete. All 15 tests pass; tick rate ~25K/s at 10K vertices.
 - **Docs:** 10 markdown files under `docs/` + this file + `CLAUDE.md`.
-- **Next action:** Phase 1, task 1 (define `VertexId`, `EdgeId`, `Layer` enum).
+- **Next action:** Phase 2, task 1 (per-layer signal extractors + conductance).
 
 ---
 
@@ -47,7 +47,7 @@
 
 - [x] `cargo build --workspace` succeeds.
 - [x] `cargo test --workspace` passes (empty suite OK).
-- [ ] CI green on first push. *(pending remote push)*
+- [x] CI green on first push. 
 
 ---
 
@@ -69,25 +69,25 @@
 
 ### Tasks
 
-- [ ] Define `VertexId`, `EdgeId`, `Layer` enum (Physical, Emotional, Economic, Social).
-- [ ] Define per-layer state structs + composite `VertexState` (Section 3.A of `docs/model.md`).
-- [ ] Define `Edge` with ring-buffer history (`HISTORY_WINDOW` ticks).
-- [ ] Define `Params` with serde + TOML deserialize; validate ranges.
-- [ ] Implement `Invariants 1–7` as predicate functions in `invariants.rs`.
-- [ ] Implement `ChaCha20Rng` resource in `rng.rs` with `fork(label)` for per-system streams.
-- [ ] Implement `init.rs` with three `init_distribution` modes per `docs/model.md` §3.B.
-- [ ] Define 7 ordered `SystemSet`s in `tick.rs` (ingest → propagate → bridges → crisis → plasticity → history → output). Stage bodies empty.
-- [ ] Per-tick output summary to stdout + JSONL.
-- [ ] `mkm-cli run config.toml` loads TOML → builds Bevy app → runs `max_ticks` → exits cleanly.
+- [x] Define `VertexId`, `EdgeId`, `Layer` enum (Physical, Emotional, Economic, Social).
+- [x] Define per-layer state structs + composite `VertexState` (Section 3.A of `docs/model.md`).
+- [x] Define `Edge` with ring-buffer history (`HISTORY_WINDOW` ticks).
+- [x] Define `Params` with serde + TOML deserialize; validate ranges.
+- [x] Implement `Invariants 1–7` as predicate functions in `invariants.rs`.
+- [x] Implement `ChaCha20Rng` resource in `rng.rs` with `fork(label)` for per-system streams.
+- [x] Implement `init.rs` with three `init_distribution` modes per `docs/model.md` §3.B.
+- [x] Define 7 ordered `SystemSet`s in `tick.rs` (ingest → propagate → bridges → crisis → plasticity → history → output). Stage bodies empty.
+- [x] Per-tick output summary to stdout + JSONL.
+- [x] `mkm-cli run config.toml` loads TOML → builds Bevy app → runs `max_ticks` → exits cleanly.
 
 ### Acceptance gates
 
-- [ ] 10K vertices initialized; state distribution matches `docs/model.md` §3.B within tolerance.
-- [ ] `sim_time` advances exactly `dt` per tick.
-- [ ] Snapshot round-trip (save → load → save) bit-identical.
-- [ ] Determinism: 3 runs with same seed → identical SHA-256 of final snapshot.
-- [ ] Tick rate ≥ 1000/s at 10K vertices (no dynamics).
-- [ ] Invariants 1, 2, 3, 7 hold throughout.
+- [x] 10K vertices initialized; state distribution matches `docs/model.md` §3.B within tolerance.
+- [x] `sim_time` advances exactly `dt` per tick.
+- [x] Snapshot round-trip (save → load → save) bit-identical.
+- [x] Determinism: 3 runs with same seed → identical SHA-256 of final snapshot.
+- [x] Tick rate ≥ 1000/s at 10K vertices (no dynamics). (~25K ticks/s measured)
+- [x] Invariants 1, 2, 3, 7 hold throughout.
 
 ---
 

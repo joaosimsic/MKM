@@ -889,6 +889,7 @@ dependencies = [
  "rand_chacha",
  "rmp-serde",
  "serde",
+ "serde_json",
  "smallvec",
  "thiserror",
  "toml",

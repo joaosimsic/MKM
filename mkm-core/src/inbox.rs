@@ -1,6 +1,7 @@
+use serde::{Deserialize, Serialize};
 use smallvec::SmallVec;
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Inbox {
     pub physical: SmallVec<[f32; 8]>,
     pub emotional: SmallVec<[f32; 8]>,
