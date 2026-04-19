@@ -25,6 +25,14 @@ pub struct VEnergy(pub EnergyBudget);
 #[derive(Component, Default)]
 pub struct VInbox(pub Inbox);
 
+/// Reputation at the end of the previous tick — needed by B_se to detect drops.
+#[derive(Component, Default)]
+pub struct VPrevReputation(pub f32);
+
+/// Accumulated bridge-activity cost from Stage 3, deducted in Stage 5.
+#[derive(Component, Default)]
+pub struct VPendingEnergyCost(pub f32);
+
 #[derive(Bundle)]
 pub struct VertexBundle {
     pub id: VId,
@@ -34,4 +42,6 @@ pub struct VertexBundle {
     pub coupling: VCoupling,
     pub energy: VEnergy,
     pub inbox: VInbox,
+    pub prev_reputation: VPrevReputation,
+    pub pending_energy: VPendingEnergyCost,
 }

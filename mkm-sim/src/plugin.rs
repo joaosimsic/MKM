@@ -5,14 +5,15 @@ use mkm_core::{
 };
 
 use crate::{
+    bridge_registry::BridgeRegistry,
     init::init_world,
     resources::{
         EdgeStore, EventQueueRes, ParamsRes, SimClock, SimConfigRes, SimRngRes, TickMetrics,
     },
     rng::SimRng,
     systems::{
-        history::history_system, ingest::ingest_system, output::output_system,
-        propagate::propagate_system,
+        bridges::bridges_system, history::history_system, ingest::ingest_system,
+        output::output_system, plasticity::plasticity_system, propagate::propagate_system,
     },
     tick::TickStage,
 };
@@ -34,6 +35,7 @@ impl Plugin for MkmSimPlugin {
         app.insert_resource(SimClock::new());
         app.insert_resource(EventQueueRes(EventQueue::new()));
         app.insert_resource(EdgeStore(init.edges));
+        app.insert_resource(BridgeRegistry::with_defaults());
         app.init_resource::<TickMetrics>();
 
         // Spawn vertex entities
@@ -58,6 +60,8 @@ impl Plugin for MkmSimPlugin {
 
         app.add_systems(Update, ingest_system.in_set(TickStage::Ingest));
         app.add_systems(Update, propagate_system.in_set(TickStage::Propagate));
+        app.add_systems(Update, bridges_system.in_set(TickStage::Bridges));
+        app.add_systems(Update, plasticity_system.in_set(TickStage::Plasticity));
         app.add_systems(Update, history_system.in_set(TickStage::History));
         app.add_systems(Update, output_system.in_set(TickStage::Output));
     }

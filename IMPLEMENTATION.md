@@ -12,9 +12,9 @@
 
 ## Status snapshot (as of 2026-04-19)
 
-- **Code:** Phase 1 complete. All 15 tests pass; tick rate ~25K/s at 10K vertices.
+- **Code:** Phase 3 complete. All tests pass (55 total). Phase 1 tick rate ~25K/s at 10K vertices.
 - **Docs:** 10 markdown files under `docs/` + this file + `CLAUDE.md`.
-- **Next action:** Phase 3 (bridge functions + cascade).
+- **Next action:** Phase 4 (structural plasticity: snap, weave, zombie).
 
 ---
 
@@ -137,22 +137,22 @@
 
 ### Tasks
 
-- [ ] Define `BridgeFn` trait: `apply(&self, source_state, target_state, coupling_level, params) -> Delta`.
-- [ ] Register all 8 default bridges per `docs/dynamics.md` §3 table.
-- [ ] Apply intra-layer updates, then bridges, with `A·D(m)` modulation (influence mass damping).
-- [ ] Multiply bridge outputs by `1 + COUPLING_AMPLIFICATION * coupling_level`.
-- [ ] Deduct bridge-activity energy from per-vertex budget.
-- [ ] Clear inboxes at stage end.
-- [ ] Allow runtime bridge registration (no recompile for custom bridges).
+- [x] Define `BridgeFn` trait: `apply(&self, source_state, target_state, coupling_level, params) -> Delta`.
+- [x] Register all 8 default bridges per `docs/dynamics.md` §3 table.
+- [x] Apply intra-layer updates, then bridges, with `A·D(m)` modulation (influence mass damping).
+- [x] Multiply bridge outputs by `1 + COUPLING_AMPLIFICATION * coupling_level`.
+- [x] Deduct bridge-activity energy from per-vertex budget.
+- [x] Clear inboxes at stage end.
+- [x] Allow runtime bridge registration (no recompile for custom bridges).
 
 ### Acceptance gates
 
-- [ ] Each of the 8 default bridges reproduces a hand-computed delta at a fixed input within 1e-4.
-- [ ] Emotional spike produces proportional Mp, Mc response within 3 ticks, ≤ 5% analytic error.
-- [ ] `coupling_level = 1.0` amplifies bridge output by exactly `COUPLING_AMPLIFICATION`.
-- [ ] Energy bookkeeping (Invariant 5) holds within 1e-5 tolerance.
-- [ ] Custom bridge registration at runtime works.
-- [ ] Invariants 1–5 hold at 10K ticks with random shocks every 100 ticks.
+- [x] Each of the 8 default bridges reproduces a hand-computed delta at a fixed input within 1e-4.
+- [x] Emotional spike produces proportional Mp, Mc response within 3 ticks, ≤ 5% analytic error.
+- [x] `coupling_level = 1.0` amplifies bridge output by exactly `COUPLING_AMPLIFICATION`.
+- [x] Energy bookkeeping (Invariant 5) holds within 1e-5 tolerance.
+- [x] Custom bridge registration at runtime works.
+- [x] Invariants 1–5 hold at 10K ticks with random shocks every 100 ticks.
 
 ---
 

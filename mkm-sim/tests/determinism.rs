@@ -60,7 +60,7 @@ fn different_seeds_differ() {
     // At minimum the initial state should differ (different seeds → different positions/states)
     let differs = r1
         .iter()
-        .any(|(id, v1)| r2.get(id).map_or(true, |v2| v1 != v2));
+        .any(|(id, v1)| r2.get(id) != Some(v1));
     assert!(differs, "different seeds should produce different states");
 }
 

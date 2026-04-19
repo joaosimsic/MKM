@@ -16,7 +16,10 @@ use rand::Rng;
 use rand_chacha::ChaCha20Rng;
 
 use crate::{
-    components::{VCoupling, VEnergy, VId, VInbox, VLifecycle, VMass, VState, VertexBundle},
+    components::{
+        VCoupling, VEnergy, VId, VInbox, VLifecycle, VMass, VPendingEnergyCost, VPrevReputation,
+        VState, VertexBundle,
+    },
     rng::SimRng,
 };
 
@@ -149,7 +152,7 @@ fn init_vertex_bundles(
             };
             VertexBundle {
                 id: VId(VertexId(i as u64)),
-                state: VState(state),
+                state: VState(state.clone()),
                 mass: VMass(mass),
                 lifecycle: VLifecycle(VertexLifecycle::Active),
                 coupling: VCoupling(CouplingState::default()),
@@ -158,6 +161,8 @@ fn init_vertex_bundles(
                     params.energy_regen_rate,
                 )),
                 inbox: VInbox(Inbox::default()),
+                prev_reputation: VPrevReputation(state.social.reputation),
+                pending_energy: VPendingEnergyCost::default(),
             }
         })
         .collect()
