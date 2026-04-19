@@ -1,0 +1,12 @@
+[package]
+name = "mkm-viz"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+mkm-core = { path = "../mkm-core" }
+mkm-sim = { path = "../mkm-sim" }
+bevy = { workspace = true }
+glam = { workspace = true }

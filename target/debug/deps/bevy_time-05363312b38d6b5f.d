@@ -1,0 +1,13 @@
+/home/joao/proj/MKM/target/debug/deps/bevy_time-05363312b38d6b5f.d: /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/lib.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/common_conditions.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/fixed.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/real.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/stopwatch.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/time.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/timer.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/virt.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/../README.md
+
+/home/joao/proj/MKM/target/debug/deps/libbevy_time-05363312b38d6b5f.rmeta: /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/lib.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/common_conditions.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/fixed.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/real.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/stopwatch.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/time.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/timer.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/virt.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/../README.md
+
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/lib.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/common_conditions.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/fixed.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/real.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/stopwatch.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/time.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/timer.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/virt.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_time-0.15.3/src/../README.md:

@@ -1,0 +1,18 @@
+[package]
+name = "mkm-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "mkm-cli"
+path = "src/main.rs"
+
+[dependencies]
+mkm-core = { path = "../mkm-core" }
+mkm-sim = { path = "../mkm-sim" }
+bevy = { workspace = true }
+serde = { workspace = true }
+toml = { workspace = true }
+thiserror = { workspace = true }

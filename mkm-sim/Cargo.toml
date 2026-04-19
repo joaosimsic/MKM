@@ -1,0 +1,18 @@
+[package]
+name = "mkm-sim"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+mkm-core = { path = "../mkm-core" }
+bevy = { workspace = true }
+rayon = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+glam = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+smallvec = { workspace = true }

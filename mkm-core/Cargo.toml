@@ -1,0 +1,16 @@
+[package]
+name = "mkm-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+toml = { workspace = true }
+thiserror = { workspace = true }
+glam = { workspace = true }
+smallvec = { workspace = true }
+rmp-serde = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }

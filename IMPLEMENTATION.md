@@ -12,9 +12,9 @@
 
 ## Status snapshot (as of 2026-04-19)
 
-- **Code:** nothing exists. No `Cargo.toml`, no crates, no source files.
+- **Code:** Phase 0 complete. Workspace builds and tests pass.
 - **Docs:** 10 markdown files under `docs/` + this file + `CLAUDE.md`.
-- **Next action:** Phase 0, task 1 (scaffold the Rust workspace).
+- **Next action:** Phase 1, task 1 (define `VertexId`, `EdgeId`, `Layer` enum).
 
 ---
 
@@ -36,18 +36,18 @@
 
 ### Tasks
 
-- [ ] Define root workspace `Cargo.toml` with shared profile settings (LTO, `codegen-units = 1` for release).
-- [ ] Pin toolchain in `rust-toolchain.toml`.
-- [ ] Add Bevy, Rayon, glam, serde, toml, rand_chacha, thiserror as workspace dependencies.
-- [ ] Create four crate skeletons with empty `lib.rs` / `main.rs`.
-- [ ] Write CI workflow: `cargo fmt --check`, `cargo clippy --workspace -- -D warnings`, `cargo build --workspace`, `cargo test --workspace`.
-- [ ] Verify clean-checkout build locally.
+- [x] Define root workspace `Cargo.toml` with shared profile settings (LTO, `codegen-units = 1` for release).
+- [x] Pin toolchain in `rust-toolchain.toml`.
+- [x] Add Bevy, Rayon, glam, serde, toml, rand_chacha, thiserror as workspace dependencies.
+- [x] Create four crate skeletons with empty `lib.rs` / `main.rs`.
+- [x] Write CI workflow: `cargo fmt --check`, `cargo clippy --workspace -- -D warnings`, `cargo build --workspace`, `cargo test --workspace`.
+- [x] Verify clean-checkout build locally.
 
 ### Acceptance gates
 
-- [ ] `cargo build --workspace` succeeds.
-- [ ] `cargo test --workspace` passes (empty suite OK).
-- [ ] CI green on first push.
+- [x] `cargo build --workspace` succeeds.
+- [x] `cargo test --workspace` passes (empty suite OK).
+- [ ] CI green on first push. *(pending remote push)*
 
 ---
 

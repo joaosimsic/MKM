@@ -1,0 +1,10 @@
+/home/joao/proj/MKM/target/debug/deps/bevy_ecs_macros-556333e1c6826d59.d: /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/lib.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/component.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_data.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_filter.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/states.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/world_query.rs
+
+/home/joao/proj/MKM/target/debug/deps/libbevy_ecs_macros-556333e1c6826d59.so: /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/lib.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/component.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_data.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_filter.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/states.rs /home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/world_query.rs
+
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/lib.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/component.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_data.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/query_filter.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/states.rs:
+/home/joao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs_macros-0.15.3/src/world_query.rs:
