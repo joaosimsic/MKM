@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use mkm_core::{id::VertexId, layer::Layer, layer::signal_extractor, lifecycle::EdgeLifecycle};
+use mkm_core::{id::VertexId, layer::signal_extractor, layer::Layer, lifecycle::EdgeLifecycle};
 use std::collections::HashMap;
 
 use crate::{
@@ -34,7 +34,10 @@ pub fn propagate_system(
         let g = edge.conductance();
         let mass_weight = src_mass / (1.0 + src_mass);
         let s_out = edge.weight * g * s_in * mass_weight;
-        pending.entry(edge.target).or_default().push((edge.layer, s_out));
+        pending
+            .entry(edge.target)
+            .or_default()
+            .push((edge.layer, s_out));
     }
 
     for (vid, mut vinbox) in &mut targets {

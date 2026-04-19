@@ -27,8 +27,12 @@ fn high_vs_low_signal_asymmetry() {
     let alpha = 0.8_f32;
     let n = 200_usize;
 
-    let high_signals: Vec<f32> = (0..n).map(|i| if i % 2 == 0 { 0.8 } else { -0.8 }).collect();
-    let low_signals: Vec<f32> = (0..n).map(|i| if i % 2 == 0 { 0.2 } else { -0.2 }).collect();
+    let high_signals: Vec<f32> = (0..n)
+        .map(|i| if i % 2 == 0 { 0.8 } else { -0.8 })
+        .collect();
+    let low_signals: Vec<f32> = (0..n)
+        .map(|i| if i % 2 == 0 { 0.2 } else { -0.2 })
+        .collect();
 
     let r_high = run_edge(alpha, &high_signals);
     let r_low = run_edge(alpha, &low_signals);
@@ -54,7 +58,8 @@ fn hysteresis_formula_single_step() {
     let expected = alpha * r_before + (1.0 - alpha) * 0.5;
     assert!(
         (edge.resistance - expected).abs() < 1e-6,
-        "hysteresis formula: got {} expected {expected}", edge.resistance
+        "hysteresis formula: got {} expected {expected}",
+        edge.resistance
     );
 }
 
@@ -67,12 +72,20 @@ fn resistance_clamped() {
         edge.history.push(10.0); // absurdly large
         edge.update_resistance(0.5);
     }
-    assert!(edge.resistance <= 1.0, "resistance exceeded 1.0: {}", edge.resistance);
+    assert!(
+        edge.resistance <= 1.0,
+        "resistance exceeded 1.0: {}",
+        edge.resistance
+    );
 
     edge.resistance = 0.01;
     for _ in 0..100 {
         edge.history.push(0.0);
         edge.update_resistance(0.5);
     }
-    assert!(edge.resistance >= 0.0, "resistance went negative: {}", edge.resistance);
+    assert!(
+        edge.resistance >= 0.0,
+        "resistance went negative: {}",
+        edge.resistance
+    );
 }

@@ -4,15 +4,28 @@ use mkm_core::{
     id::{EdgeId, VertexId},
     layer::{signal_extractor, Layer},
     lifecycle::EdgeLifecycle,
-    state::{EmotionalState, EconomicState, PhysicalState, SocialState, VertexState},
+    state::{EconomicState, EmotionalState, PhysicalState, SocialState, VertexState},
 };
 
 fn make_state(ke: f32) -> VertexState {
     VertexState {
-        physical: PhysicalState { position: glam::Vec2::ZERO, kinetic_energy: ke },
-        emotional: EmotionalState { valence: 0.5, arousal: 0.3 },
-        economic: EconomicState { resources: 0.5, flow_rate: 0.2 },
-        social: SocialState { trust: 0.7, reputation: 0.4, hierarchy_rank: 0 },
+        physical: PhysicalState {
+            position: glam::Vec2::ZERO,
+            kinetic_energy: ke,
+        },
+        emotional: EmotionalState {
+            valence: 0.5,
+            arousal: 0.3,
+        },
+        economic: EconomicState {
+            resources: 0.5,
+            flow_rate: 0.2,
+        },
+        social: SocialState {
+            trust: 0.7,
+            reputation: 0.4,
+            hierarchy_rank: 0,
+        },
     }
 }
 
@@ -21,7 +34,9 @@ fn bench_propagate_100k(c: &mut Criterion) {
     const EDGES_PER_VERTEX: usize = 100; // 100K total edges
     const N_EDGES: usize = N_VERTICES * EDGES_PER_VERTEX;
 
-    let states: Vec<VertexState> = (0..N_VERTICES).map(|i| make_state(i as f32 / N_VERTICES as f32)).collect();
+    let states: Vec<VertexState> = (0..N_VERTICES)
+        .map(|i| make_state(i as f32 / N_VERTICES as f32))
+        .collect();
     let masses: Vec<f32> = vec![1.0; N_VERTICES];
 
     let edges: Vec<Edge> = (0..N_EDGES)

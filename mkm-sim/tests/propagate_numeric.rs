@@ -5,25 +5,41 @@ use mkm_core::{
     edge::{Edge, HISTORY_WINDOW},
     id::{EdgeId, VertexId},
     layer::{signal_extractor, Layer},
-state::{EmotionalState, EconomicState, PhysicalState, SocialState, VertexState},
+    state::{EconomicState, EmotionalState, PhysicalState, SocialState, VertexState},
 };
 
-fn make_state(ke: f32, val: f32, ar: f32, res: f32, flow: f32, trust: f32, rep: f32) -> VertexState {
+fn make_state(
+    ke: f32,
+    val: f32,
+    ar: f32,
+    res: f32,
+    flow: f32,
+    trust: f32,
+    rep: f32,
+) -> VertexState {
     VertexState {
-        physical: PhysicalState { position: glam::Vec2::ZERO, kinetic_energy: ke },
-        emotional: EmotionalState { valence: val, arousal: ar },
-        economic: EconomicState { resources: res, flow_rate: flow },
-        social: SocialState { trust, reputation: rep, hierarchy_rank: 0 },
+        physical: PhysicalState {
+            position: glam::Vec2::ZERO,
+            kinetic_energy: ke,
+        },
+        emotional: EmotionalState {
+            valence: val,
+            arousal: ar,
+        },
+        economic: EconomicState {
+            resources: res,
+            flow_rate: flow,
+        },
+        social: SocialState {
+            trust,
+            reputation: rep,
+            hierarchy_rank: 0,
+        },
     }
 }
 
 fn make_edge(layer: Layer, weight: f32, resistance: f32) -> Edge {
-    let mut e = Edge::new(
-        EdgeId(0),
-        VertexId(0),
-        VertexId(1),
-        layer,
-    );
+    let mut e = Edge::new(EdgeId(0), VertexId(0), VertexId(1), layer);
     e.weight = weight;
     e.resistance = resistance;
     e
@@ -42,7 +58,10 @@ fn conductance_formula() {
     let mut e = make_edge(Layer::Physical, 1.0, 0.3);
     let expected = 1.0 / 1.3;
     let got = e.conductance();
-    assert!((got - expected).abs() < 1e-6, "conductance: got {got} expected {expected}");
+    assert!(
+        (got - expected).abs() < 1e-6,
+        "conductance: got {got} expected {expected}"
+    );
 
     e.resistance = 0.0;
     assert!((e.conductance() - 1.0).abs() < 1e-6);
@@ -96,7 +115,10 @@ fn zero_signal_no_drift() {
         edge.update_resistance(alpha);
     }
     // mean(history) = 0, so r_{t+1} = alpha^t * r_0 → 0
-    assert!(edge.resistance < 0.01, "resistance should decay to 0 with zero signal");
+    assert!(
+        edge.resistance < 0.01,
+        "resistance should decay to 0 with zero signal"
+    );
 }
 
 /// Constant non-zero signal converges resistance toward mean(|s_out|).
@@ -122,6 +144,7 @@ fn constant_signal_convergence() {
     edge.update_resistance(alpha);
     assert!(
         (edge.resistance - r_prev).abs() < 1e-4,
-        "resistance not converged: {r_prev} → {}", edge.resistance
+        "resistance not converged: {r_prev} → {}",
+        edge.resistance
     );
 }
