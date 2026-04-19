@@ -41,7 +41,9 @@ pub fn propagate_system(
     }
 
     for (vid, mut vinbox) in &mut targets {
-        let Some(writes) = pending.get(&vid.0) else { continue };
+        let Some(writes) = pending.get(&vid.0) else {
+            continue;
+        };
         for &(layer, signal) in writes {
             match layer {
                 Layer::Physical => vinbox.0.physical.push(signal),
