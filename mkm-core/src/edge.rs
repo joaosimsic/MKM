@@ -1,4 +1,9 @@
-use crate::{id::{EdgeId, VertexId}, layer::Layer, lifecycle::LifecycleState, ringbuffer::RingBuffer};
+use crate::{
+    id::{EdgeId, VertexId},
+    layer::Layer,
+    lifecycle::LifecycleState,
+    ringbuffer::RingBuffer,
+};
 use serde::{Deserialize, Serialize};
 
 pub const HISTORY_WINDOW: usize = 64;

@@ -1,5 +1,5 @@
-use rand_chacha::ChaCha20Rng;
 use rand::SeedableRng;
+use rand_chacha::ChaCha20Rng;
 
 pub struct SimRng(pub ChaCha20Rng);
 

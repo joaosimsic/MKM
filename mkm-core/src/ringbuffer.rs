@@ -35,7 +35,11 @@ impl<T: Clone + Default> RingBuffer<T> {
     }
 
     pub fn iter(&self) -> impl Iterator<Item = &T> {
-        let start = if self.len < self.capacity { 0 } else { self.head };
+        let start = if self.len < self.capacity {
+            0
+        } else {
+            self.head
+        };
         let len = self.len;
         let cap = self.capacity;
         (0..len).map(move |i| &self.buf[(start + i) % cap])
