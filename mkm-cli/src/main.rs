@@ -38,7 +38,10 @@ fn cmd_run(config_path: PathBuf) {
     let max_ticks = sim_config.max_ticks;
 
     let mut app = App::new();
-    app.add_plugins(MkmSimPlugin { config: sim_config, params });
+    app.add_plugins(MkmSimPlugin {
+        config: sim_config,
+        params,
+    });
 
     for _ in 0..max_ticks {
         app.update();

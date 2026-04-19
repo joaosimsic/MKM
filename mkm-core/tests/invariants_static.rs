@@ -11,10 +11,23 @@ use mkm_core::{
 
 fn good_state() -> VertexState {
     VertexState {
-        physical: PhysicalState { position: glam::Vec2::ZERO, kinetic_energy: 0.5 },
-        emotional: EmotionalState { valence: 0.0, arousal: 0.5 },
-        economic: EconomicState { resources: 0.5, flow_rate: 0.0 },
-        social: SocialState { reputation: 0.0, hierarchy_rank: 0, trust: 0.5 },
+        physical: PhysicalState {
+            position: glam::Vec2::ZERO,
+            kinetic_energy: 0.5,
+        },
+        emotional: EmotionalState {
+            valence: 0.0,
+            arousal: 0.5,
+        },
+        economic: EconomicState {
+            resources: 0.5,
+            flow_rate: 0.0,
+        },
+        social: SocialState {
+            reputation: 0.0,
+            hierarchy_rank: 0,
+            trust: 0.5,
+        },
     }
 }
 

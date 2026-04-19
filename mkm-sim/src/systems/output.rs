@@ -1,8 +1,4 @@
-use std::{
-    fs::OpenOptions,
-    io::Write,
-    path::PathBuf,
-};
+use std::{fs::OpenOptions, io::Write, path::PathBuf};
 
 use bevy::prelude::*;
 use mkm_core::{
@@ -35,9 +31,11 @@ pub fn output_system(
             _ => active_v += 1,
         }
     }
-    let active_e = edges.0.iter().filter(|e| {
-        e.lifecycle != mkm_core::lifecycle::EdgeLifecycle::Snapped
-    }).count();
+    let active_e = edges
+        .0
+        .iter()
+        .filter(|e| e.lifecycle != mkm_core::lifecycle::EdgeLifecycle::Snapped)
+        .count();
 
     metrics.active_vertices = active_v;
     metrics.zombie_count = zombie_v;
@@ -65,7 +63,7 @@ pub fn output_system(
     }
 
     // Snapshot flush
-    if config.0.snapshot_interval > 0 && tick % config.0.snapshot_interval == 0 {
+    if config.0.snapshot_interval > 0 && tick.is_multiple_of(config.0.snapshot_interval) {
         flush_snapshot(tick, clock.sim_time, &config, &edges, &query);
     }
 

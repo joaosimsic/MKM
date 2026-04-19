@@ -1,10 +1,6 @@
 use crate::{
-    coupling::CouplingState,
-    edge::Edge,
-    energy::EnergyBudget,
-    id::VertexId,
-    lifecycle::VertexLifecycle,
-    state::VertexState,
+    coupling::CouplingState, edge::Edge, energy::EnergyBudget, id::VertexId,
+    lifecycle::VertexLifecycle, state::VertexState,
 };
 use serde::{Deserialize, Serialize};
 use std::io;
@@ -45,7 +41,7 @@ impl MeshSnapshot {
     pub fn save(&self, path: &Path) -> io::Result<()> {
         let bytes = self
             .to_bytes()
-            .map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))?;
+            .map_err(|e| io::Error::other(e.to_string()))?;
         std::fs::write(path, bytes)
     }
 

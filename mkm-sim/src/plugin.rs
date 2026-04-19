@@ -1,9 +1,14 @@
 use bevy::prelude::*;
-use mkm_core::{events::EventQueue, params::{Params, SimConfig}};
+use mkm_core::{
+    events::EventQueue,
+    params::{Params, SimConfig},
+};
 
 use crate::{
     init::init_world,
-    resources::{EdgeStore, EventQueueRes, ParamsRes, SimClock, SimConfigRes, SimRngRes, TickMetrics},
+    resources::{
+        EdgeStore, EventQueueRes, ParamsRes, SimClock, SimConfigRes, SimRngRes, TickMetrics,
+    },
     rng::SimRng,
     systems::{ingest::ingest_system, output::output_system},
     tick::TickStage,

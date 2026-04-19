@@ -14,13 +14,30 @@ fn sample_vertex_snapshot(id: u64) -> VertexSnapshot {
         id: VertexId(id),
         mass: 1.0 + id as f32 * 0.1,
         state: VertexState {
-            physical: PhysicalState { position: glam::Vec2::new(1.0, 2.0), kinetic_energy: 0.5 },
-            emotional: EmotionalState { valence: 0.3, arousal: 0.7 },
-            economic: EconomicState { resources: 0.6, flow_rate: 0.1 },
-            social: SocialState { reputation: 0.2, hierarchy_rank: 0, trust: 0.8 },
+            physical: PhysicalState {
+                position: glam::Vec2::new(1.0, 2.0),
+                kinetic_energy: 0.5,
+            },
+            emotional: EmotionalState {
+                valence: 0.3,
+                arousal: 0.7,
+            },
+            economic: EconomicState {
+                resources: 0.6,
+                flow_rate: 0.1,
+            },
+            social: SocialState {
+                reputation: 0.2,
+                hierarchy_rank: 0,
+                trust: 0.8,
+            },
         },
         lifecycle: VertexLifecycle::Active,
-        coupling: CouplingState { mode: CouplingMode::Loose, level: 0.0, ema: 0.0 },
+        coupling: CouplingState {
+            mode: CouplingMode::Loose,
+            level: 0.0,
+            ema: 0.0,
+        },
         energy: EnergyBudget::new(1.0, 0.01),
     }
 }

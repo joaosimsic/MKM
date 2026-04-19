@@ -35,8 +35,7 @@ pub fn ingest_system(
 }
 
 fn apply_delta(vs: &mut VState, delta: &LayerDelta) {
-    vs.0.physical.kinetic_energy =
-        (vs.0.physical.kinetic_energy + delta.physical).clamp(0.0, 1.0);
+    vs.0.physical.kinetic_energy = (vs.0.physical.kinetic_energy + delta.physical).clamp(0.0, 1.0);
     vs.0.emotional.valence = (vs.0.emotional.valence + delta.emotional).clamp(-1.0, 1.0);
     vs.0.economic.resources = (vs.0.economic.resources + delta.economic).clamp(0.0, 1.0);
     vs.0.social.trust = (vs.0.social.trust + delta.social).clamp(0.0, 1.0);

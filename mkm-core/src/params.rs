@@ -119,28 +119,46 @@ impl Params {
             return Err(format!("r_max={} must be > 0", self.r_max));
         }
         if !(0.0..=self.r_max).contains(&self.yield_point) {
-            return Err(format!("yield_point={} out of [0, r_max]", self.yield_point));
+            return Err(format!(
+                "yield_point={} out of [0, r_max]",
+                self.yield_point
+            ));
         }
         if !(0.0..=1.0).contains(&self.alpha_resistance) {
-            return Err(format!("alpha_resistance={} out of [0, 1]", self.alpha_resistance));
+            return Err(format!(
+                "alpha_resistance={} out of [0, 1]",
+                self.alpha_resistance
+            ));
         }
         if !(0.0..=1.0).contains(&self.collapse_threshold) {
-            return Err(format!("collapse_threshold={} out of [0, 1]", self.collapse_threshold));
+            return Err(format!(
+                "collapse_threshold={} out of [0, 1]",
+                self.collapse_threshold
+            ));
         }
         if !(0.0..=1.0).contains(&self.phi_c) {
             return Err(format!("phi_c={} out of [0, 1]", self.phi_c));
         }
         if self.energy_capacity <= 0.0 {
-            return Err(format!("energy_capacity={} must be > 0", self.energy_capacity));
+            return Err(format!(
+                "energy_capacity={} must be > 0",
+                self.energy_capacity
+            ));
         }
         if self.energy_regen_rate < 0.0 {
-            return Err(format!("energy_regen_rate={} must be >= 0", self.energy_regen_rate));
+            return Err(format!(
+                "energy_regen_rate={} must be >= 0",
+                self.energy_regen_rate
+            ));
         }
         if !(0.0..=1.0).contains(&self.zombie_decay) {
             return Err(format!("zombie_decay={} out of [0, 1]", self.zombie_decay));
         }
         if !(0.0..=1.0).contains(&self.stress_ema_beta) {
-            return Err(format!("stress_ema_beta={} out of [0, 1]", self.stress_ema_beta));
+            return Err(format!(
+                "stress_ema_beta={} out of [0, 1]",
+                self.stress_ema_beta
+            ));
         }
         Ok(())
     }

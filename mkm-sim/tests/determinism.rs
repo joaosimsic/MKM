@@ -30,7 +30,7 @@ fn run_sim(seed: u64, ticks: u64) -> HashMap<u64, (f32, f32, f32, f32)> {
     for (id, state) in world.query::<(&VId, &VState)>().iter(world) {
         let s = &state.0;
         result.insert(
-            id.0.0,
+            id.0 .0,
             (
                 s.physical.kinetic_energy,
                 s.emotional.valence,
@@ -58,7 +58,9 @@ fn different_seeds_differ() {
     let r1 = run_sim(1, 5);
     let r2 = run_sim(2, 5);
     // At minimum the initial state should differ (different seeds → different positions/states)
-    let differs = r1.iter().any(|(id, v1)| r2.get(id).map_or(true, |v2| v1 != v2));
+    let differs = r1
+        .iter()
+        .any(|(id, v1)| r2.get(id).map_or(true, |v2| v1 != v2));
     assert!(differs, "different seeds should produce different states");
 }
 

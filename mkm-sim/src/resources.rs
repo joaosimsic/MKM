@@ -1,5 +1,9 @@
 use bevy::prelude::*;
-use mkm_core::{edge::Edge, events::EventQueue, params::{Params, SimConfig}};
+use mkm_core::{
+    edge::Edge,
+    events::EventQueue,
+    params::{Params, SimConfig},
+};
 
 use crate::rng::SimRng;
 
@@ -14,7 +18,10 @@ pub struct SimClock {
 
 impl SimClock {
     pub fn new() -> Self {
-        Self { tick: 0, sim_time: 0.0 }
+        Self {
+            tick: 0,
+            sim_time: 0.0,
+        }
     }
 }
 

@@ -35,7 +35,10 @@ pub fn init_world(config: &SimConfig, params: &Params, rng: &mut SimRng) -> Init
     let vertex_bundles = init_vertex_bundles(n, config, params, &positions, &mut state_rng);
     let edges = init_edges(n, config, &vertex_bundles, &positions, &mut edge_rng);
 
-    InitResult { vertex_bundles, edges }
+    InitResult {
+        vertex_bundles,
+        edges,
+    }
 }
 
 fn box_muller(rng: &mut ChaCha20Rng, mean: f32, std: f32) -> f32 {
@@ -129,10 +132,20 @@ fn init_vertex_bundles(
             let mass = box_muller(rng, 1.0, 0.2).clamp(0.1, 10.0);
 
             let state = VertexState {
-                physical: PhysicalState { position: pos, kinetic_energy: 0.0 },
+                physical: PhysicalState {
+                    position: pos,
+                    kinetic_energy: 0.0,
+                },
                 emotional: EmotionalState { valence, arousal },
-                economic: EconomicState { resources, flow_rate: 0.0 },
-                social: SocialState { reputation, hierarchy_rank: 0, trust },
+                economic: EconomicState {
+                    resources,
+                    flow_rate: 0.0,
+                },
+                social: SocialState {
+                    reputation,
+                    hierarchy_rank: 0,
+                    trust,
+                },
             };
             VertexBundle {
                 id: VId(VertexId(i as u64)),
@@ -140,7 +153,10 @@ fn init_vertex_bundles(
                 mass: VMass(mass),
                 lifecycle: VLifecycle(VertexLifecycle::Active),
                 coupling: VCoupling(CouplingState::default()),
-                energy: VEnergy(EnergyBudget::new(params.energy_capacity, params.energy_regen_rate)),
+                energy: VEnergy(EnergyBudget::new(
+                    params.energy_capacity,
+                    params.energy_regen_rate,
+                )),
                 inbox: VInbox(Inbox::default()),
             }
         })
@@ -150,7 +166,12 @@ fn init_vertex_bundles(
 fn make_edge(id: &mut u64, src: usize, tgt: usize, layer: Layer, rng: &mut ChaCha20Rng) -> Edge {
     let eid = *id;
     *id += 1;
-    let mut e = Edge::new(EdgeId(eid), VertexId(src as u64), VertexId(tgt as u64), layer);
+    let mut e = Edge::new(
+        EdgeId(eid),
+        VertexId(src as u64),
+        VertexId(tgt as u64),
+        layer,
+    );
     e.weight = lerp_range(rng.gen::<f32>(), -0.5, 0.5);
     e
 }
@@ -180,25 +201,49 @@ fn init_edges(
     }
 
     // Ms: accept ~ 1 - |rep_A - rep_B|
-    sample_random_edges(n, target, Layer::Social, &mut eid, rng, &mut edges, |a, b| {
-        let ra = bundles[a].state.0.social.reputation;
-        let rb = bundles[b].state.0.social.reputation;
-        1.0 - (ra - rb).abs()
-    });
+    sample_random_edges(
+        n,
+        target,
+        Layer::Social,
+        &mut eid,
+        rng,
+        &mut edges,
+        |a, b| {
+            let ra = bundles[a].state.0.social.reputation;
+            let rb = bundles[b].state.0.social.reputation;
+            1.0 - (ra - rb).abs()
+        },
+    );
 
     // Me: accept ~ 1 - |val_A - val_B|
-    sample_random_edges(n, target, Layer::Emotional, &mut eid, rng, &mut edges, |a, b| {
-        let va = bundles[a].state.0.emotional.valence;
-        let vb = bundles[b].state.0.emotional.valence;
-        1.0 - (va - vb).abs()
-    });
+    sample_random_edges(
+        n,
+        target,
+        Layer::Emotional,
+        &mut eid,
+        rng,
+        &mut edges,
+        |a, b| {
+            let va = bundles[a].state.0.emotional.valence;
+            let vb = bundles[b].state.0.emotional.valence;
+            1.0 - (va - vb).abs()
+        },
+    );
 
     // Mc: accept ~ |res_A - res_B| (complementarity)
-    sample_random_edges(n, target, Layer::Economic, &mut eid, rng, &mut edges, |a, b| {
-        let ra = bundles[a].state.0.economic.resources;
-        let rb = bundles[b].state.0.economic.resources;
-        (ra - rb).abs()
-    });
+    sample_random_edges(
+        n,
+        target,
+        Layer::Economic,
+        &mut eid,
+        rng,
+        &mut edges,
+        |a, b| {
+            let ra = bundles[a].state.0.economic.resources;
+            let rb = bundles[b].state.0.economic.resources;
+            (ra - rb).abs()
+        },
+    );
 
     edges
 }

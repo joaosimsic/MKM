@@ -1,11 +1,7 @@
 use bevy::prelude::*;
 use mkm_core::{
-    coupling::CouplingState,
-    energy::EnergyBudget,
-    id::VertexId,
-    inbox::Inbox,
-    lifecycle::VertexLifecycle,
-    state::VertexState,
+    coupling::CouplingState, energy::EnergyBudget, id::VertexId, inbox::Inbox,
+    lifecycle::VertexLifecycle, state::VertexState,
 };
 
 #[derive(Component)]
